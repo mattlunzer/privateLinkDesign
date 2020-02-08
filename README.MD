@@ -20,4 +20,4 @@ Please see official Microsoft documentation for a formal overview on the Private
 
 ## The Design Architecture
 
-![GitHub Logo](blob/master/privateLInk.jpg)
+![GitHub Logo](/blob/master/privateLInk.jpg)
