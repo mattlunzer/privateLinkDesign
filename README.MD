@@ -38,6 +38,12 @@ You won't find any details here. For how-to please see our step by step document
 
 ### The Design Architecture
 
-Because we all love pretty pictures, review the illustration below.
+Because we all love pretty pictures, review the illustration below. Here are the assumptions;
+
+1. You need to access the PaaS service privately from your corporate network
+2. Private Link is enabled on the applicable PaaS Service
+3. You have Express route or a site-to-site VPN
+4. You have a DNS Server running in Azure IaaS
 
 ![GitHub Logo](/PrivateLink.jpg)
+
