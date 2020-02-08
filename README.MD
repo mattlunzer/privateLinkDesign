@@ -24,6 +24,8 @@ It is IMPORTANT to understand that the enablement of Private Link on a PaaS serv
 2. A Network Interface Card (e.g. NIC)
 3. A FLZ called privatelink + the service FQDN (e.g Azure Private DNS Zone). For example, privatelink.database.windows.net
 
+Think about Resource Group placement and naming conventions of these services before provisioning the service.
+
 Please see official Microsoft documentation for a formal overview on the Private Link Services and the benefits it offers at the URL below.
 
 - https://docs.microsoft.com/en-us/azure/private-link/private-link-overview
@@ -35,5 +37,7 @@ You won't find any details here. For how-to please see our step by step document
 - https://docs.microsoft.com/en-us/azure/private-link/create-private-endpoint-portal
 
 ### The Design Architecture
+
+Because we all love pretty pictures, review the illustration below.
 
 ![GitHub Logo](/PrivateLink.jpg)
