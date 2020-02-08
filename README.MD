@@ -14,21 +14,25 @@ Note that the concepts in this article will apply to many other virtual network 
 
 Private Link establishes a private endpoint to an applicable Platform Service (PaaS). For example, when you provision an Azure SQL Database, it has a globally unique, publically accessible, fully qualified domain name (FQDN) such as app1.database.windows.net. This FQDN resolves to a public IPv4 IP address that is maintained by Microsoft. With Private Link enabled the same Azure SQL Database will resolve to an IP address from an Address Space assigned to your VNet. 
 
-You use Private Link to access applicable Azure PaaS services via a private endpoint from within Azure, or on premesis using (and this is important) the SAME hostname as you would if accessing the service via the public Internet. The latter is attractive if you want to access a PaaS service over a hybrid connection such as Express Route or a site-to-site VPN.
+For DNS nerds, think of Private Link as split-brain DNS.
 
-For DNS nerds, Private Link is much like Split-Brain DNS.
+You use Private Link to access applicable Azure PaaS services via a private endpoint from within Azure, or on premesis using, and this is important, the SAME hostname as you would if accessing the service via the public Internet. The latter is attractive if you want to access a PaaS service over a hybrid WAN connection such as Express Route or a site-to-site VPN.
 
-Please see official Microsoft documentation for a formal overview on the Private Link Services and the benefits it offers.
+It is IMPORTANT to understand that the enablement of Private Link on a PaaS service will establish three things;
+
+1. A Private Endpoint (maps service to NIC, Unique ID, approval workflows, etc...)
+2. A Network Interface Card (e.g. NIC)
+3. A FLZ called privatelink + the service FQDN (e.g Azure Private DNS Zone). For example, privatelink.database.windows.net
+
+Please see official Microsoft documentation for a formal overview on the Private Link Services and the benefits it offers at the URL below.
 
 - https://docs.microsoft.com/en-us/azure/private-link/private-link-overview
 
-It is IMPORTANT to understand that the enablement of Private Link on a Platform service will establish three things;
-
-- A Private endpoint (maps PaaS Service to NIC, Unique ID, approval workflows, etc...)
-- A Network Interface Card (e.g. NIC)
-- A FLZ called privatelink + the service FQDN (e.g Azure Private DNS Zone). For example, privatelink.database.windows.net
-
 ### How to enable Private Link
+
+You won't find any details here. For how-to please see our step by step documentation at the URL below.
+
+- https://docs.microsoft.com/en-us/azure/private-link/create-private-endpoint-portal
 
 ### The Design Architecture
 
