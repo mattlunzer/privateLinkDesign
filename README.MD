@@ -8,7 +8,7 @@ If you are not familiar the hub-and-spoke design pattern there is great informat
 
 - https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/hybrid-networking/hub-spoke
 
-Note that the concepts in this article will apply to many other virtual network design patterns, hub-and-spoke is used in the example due to its common use.
+Note that the concepts in this article will apply to many other virtual network design patterns, hub-and-spoke is used in the example due to its pervasiness. 
 
 ### What is Private Link, why use it and how does it work?
 
@@ -28,13 +28,13 @@ Configuring Private Link on a PaaS service will establish three things;
 
 Consider the Resource Group placement, network and naming conventions of these services before provisioning Private Link. 
 
-Please see official Microsoft documentation for a formal overview on the Private Link Services and the benefits it offers at the URL below.
+For elaboration please see official Microsoft documentation for a formal overview on the Private Link Services and the benefits it offers at the URL below.
 
 - https://docs.microsoft.com/en-us/azure/private-link/private-link-overview
 
 ### How to enable Private Link
 
-You won't find any step-by-step details here. For how-to please see our step by step documentation at the URL below.
+You won't find any step-by-step details here. For how-to please see our step by step documentation at the URL below. And yes, you can automate provisioning.
 
 - https://docs.microsoft.com/en-us/azure/private-link/create-private-endpoint-portal
 
@@ -76,6 +76,16 @@ You can chose to forward all queries to the Azure DNS Resolver, or conditionally
 Important: The Azure DNS Resolver must have a reference to the Azure Private DNS Zone (next section) that will have the privatelink.database.windows.net FLZ mappings. 
 
 In the scenario, you must configure your Azure IaaS DNS Server to conditionally forward (or forward all) queries destined for database.windows.net (or applicable PaaS FLZ) to the Azure DNS Resolver (168.63.129.16).
+
+#### Speical note about Active Directory Integrated DNS Scenarios
+
+If your DNS server in Azure is Active Directory Integrated, and you have configured conditional fowarding to also be AD integrated, you will not be able to create a conditional fowarder to the applicable FLZ on that server. instead you must either;
+
+1. Configure the Azure IaaS DNS server to forward all queries to the Azure DNS Resolver or;
+
+2. Build a stand-alone DNS Server that forwards queries to the Azure DNS Resolver. 
+ 
+if you proceed with option 2, consider building two instances of your DNS Server in Azure for resliency using Availability Sets or Availability Zones, or simply deploy your Azure IaaS DNS (Stand-alone) server using modern DevOps and Infrastructure as Code practices and rebuild it upon failure. TTL and Caching should minimize a DNS server failure.
 
 #### Azure Private DNS Zone
 
