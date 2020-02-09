@@ -95,3 +95,20 @@ There are numerous ways to interconnect VNets and that is not the purpose of thi
 
 - https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-peering-overview
 
+#### Testing
+
+Once you have the above in place, Private Link should just work. If it's not working, you messed something up.
+
+Good testing tools are things like;
+
+- Host Files (good for testing, bad for production). Host files will verify you have proper connectivity and routing in place.
+
+- NSLookup. NSLookup is handy for verifying that the PaaS FQDN resolves properly both internally and externally. Remember we want to use the SAME hostname for access
+
+- DNS Cache. Be aware of DNS caching both locally on your device, and upstream DNS Servers. If you are getting improper results, flush your DNS cache where you can.
+
+### Conclusion
+
+I hope you find this article useful. 
+
+Azure Private Link is a great new capability, but not without its complexities. Be sure you are using it to solve the right problem and do not use it for everything. Doing so will add cost, complexity and limit your agility. 
