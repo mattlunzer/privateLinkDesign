@@ -18,7 +18,7 @@ For example, when you provision an Azure SQL Database, it has a globally unique,
 
 (For DNS nerds, think of Private Link as split-brain DNS. Private Link is all orchestrated through clever CNAME mechanisms Azure manages for you)
 
-You use Private Link to access an Azure PaaS services via a private endpoint from within Azure, or on premesis using, and this is important, using the SAME hostname as you would if accessing the service via the Internet. Private Link also enables a PaaS service to be accessible over an Express Route (private peer) or site-to-site VPN.
+You use Private Link to access an Azure PaaS services via a private endpoint from within Azure, or your corporate networking using, and this is important, using the SAME hostname as you are accessing the service via the Internet. Private Link also enables a PaaS service to be accessible over an Express Route (private peer) or site-to-site VPN.
 
 Configuring Private Link on a PaaS service will establish three things;
 
@@ -61,7 +61,7 @@ In order for Private Link to work properly, DNS queries must be answered by the 
 
 #### Corporate DNS Server
 
-The DNS Server(s) in your corporate network must forward queries for the applicable PaaS Server FLZ (e.g. database.windows.net) to your Azure IaaS DNS Server.
+The DNS Server(s) in your corporate network must forward queries for the applicable PaaS Service FLZ (e.g. database.windows.net) to your Azure IaaS DNS Server.
 
 There is no other way to achieve the objective other than configuring local host files on your hosts (good for testing, poor for production). 
 
@@ -85,7 +85,7 @@ If your DNS server in Azure is Active Directory Integrated, and you have configu
 
 2. Build a stand-alone DNS Server that forwards queries to the Azure DNS Resolver. 
  
-if you proceed with option 2, consider building two instances of your DNS Server in Azure for resliency using Availability Sets or Availability Zones, or simply deploy your Azure IaaS DNS (Stand-alone) server using modern DevOps and Infrastructure as Code practices and rebuild it upon failure. TTL and Caching should minimize a DNS server failure.
+if you proceed with option 2, consider building two instances of your DNS Server in Azure for resliency using Availability Sets or Availability Zones, or simply deploy your Azure IaaS DNS (Stand-alone) server using modern DevOps and Infrastructure as Code practices and rapidly rebuild it upon failure. TTL and Caching should minimize a DNS server failure. Some automtaion to build a DNS server is forthcoming.
 
 #### Azure Private DNS Zone
 
