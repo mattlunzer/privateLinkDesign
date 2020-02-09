@@ -8,25 +8,25 @@ If you are not familiar the hub-and-spoke design pattern there is great informat
 
 - https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/hybrid-networking/hub-spoke
 
-Note that the concepts in this article will apply to many other virtual network design patterns, hub-and-spoke is used in the example due to its pervasiveness.
+Note that the concepts in this article will apply to many other virtual network design patterns, hub-and-spoke is used in the example due to its common use.
 
 ### What is Private Link, why use it and how does it work?
 
-Private Link establishes a private endpoint to a supported Platform (Paas) Service. 
+Simply put, Private Link establishes a private endpoint on a supported Platform (Paas) Service. 
 
 For example, when you provision an Azure SQL Database, it has a globally unique, publically accessible, fully qualified domain name (FQDN) such as app1.database.windows.net. This FQDN resolves to a public IPv4 IP address that is maintained by Microsoft. With Private Link enabled the same Azure SQL Database will resolve to a private IP address from an address space assigned to your VNet.
 
 (For DNS nerds, think of Private Link as split-brain DNS. Private Link is all orchestrated through clever CNAME mechanisms Azure manages for you)
 
-You use Private Link to access an Azure PaaS services via a private endpoint from within Azure, or on premesis using, and this is important, using the SAME hostname as you would if accessing the service via the Internet. Private Link also enables a PaaS service to be accessible over an Express Route or site-to-site VPN.
+You use Private Link to access an Azure PaaS services via a private endpoint from within Azure, or on premesis using, and this is important, using the SAME hostname as you would if accessing the service via the Internet. Private Link also enables a PaaS service to be accessible over an Express Route (private peer) or site-to-site VPN.
 
-The nablement of Private Link on a PaaS service will establish three things;
+Configuring Private Link on a PaaS service will establish three things;
 
 1. A Private Endpoint (maps service to NIC, Unique ID, RBAC approval workflows, etc...)
-2. A Network Interface Card (e.g. vNIC)
-3. A FLZ called privatelink + the service FQDN (e.g Azure Private DNS Zone). For example, privatelink.database.windows.net
+2. A Network Interface Card (e.g. vNIC). The vNIC is placed in a VNet\Subnet
+3. A Forward Lookup Zone (FLZ) called privatelink + the service FQDN (e.g Azure Private DNS Zone). For example, privatelink.database.windows.net
 
-Think about Resource Group placement and naming conventions of these services before provisioning the service.
+Consider the Resource Group placement, network and naming conventions of these services before provisioning Private Link. 
 
 Please see official Microsoft documentation for a formal overview on the Private Link Services and the benefits it offers at the URL below.
 
