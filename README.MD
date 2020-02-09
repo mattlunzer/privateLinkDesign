@@ -85,7 +85,11 @@ If your DNS server in Azure is Active Directory Integrated, and you have configu
 
 2. Build a stand-alone DNS Server that forwards queries to the Azure DNS Resolver. 
  
-if you proceed with option 2, consider building two instances of your DNS Server in Azure for resliency using Availability Sets or Availability Zones, or simply deploy your Azure IaaS DNS (Stand-alone) server using modern DevOps and Infrastructure as Code practices and rapidly rebuild it upon failure. TTL and Caching should minimize a DNS server failure. Some automtaion to build a DNS server is forthcoming.
+if you proceed with option 2, consider building two instances of your DNS Server in Azure for resliency using Availability Sets or Availability Zones, or simply deploy your Azure IaaS DNS (Stand-alone) server using modern DevOps and Infrastructure as Code practices and rapidly rebuild it upon failure. TTL and Caching should minimize a DNS server failure. Some automtaion to build a Windows DNS server is forthcoming.
+
+Here is a basic template that deploys a Linux DNS server that fowards all traffic to the Azure DNS resolver. 
+
+- https://github.com/Azure/azure-quickstart-templates/tree/master/301-dns-forwarder
 
 #### Azure Private DNS Zone
 
