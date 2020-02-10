@@ -18,7 +18,7 @@ For example, when you provision an Azure SQL Database, it has a globally unique,
 
 (For DNS nerds, think of Private Link as split-brain DNS. Private Link is all orchestrated through clever CNAME mechanisms Azure manages for you)
 
-You use Private Link to access an Azure PaaS services via a private endpoint from within Azure, or your corporate networking using, and this is important, using the SAME hostname as you are accessing the service via the Internet. Private Link also enables a PaaS service to be accessible over an Express Route (private peer) or site-to-site VPN.
+You use Private Link to access an Azure PaaS services via a private endpoint from within Azure, or your corporate networking using, and this is important, the SAME hostname as you are accessing the service via the Internet. Private Link also enables a PaaS service to be accessible over an Express Route (private peer) or site-to-site VPN.
 
 Configuring Private Link on a PaaS service will establish three things;
 
@@ -100,6 +100,10 @@ The Azure Private DNS Zone may be linked to your Virtual Networks. The Azure Pri
 Important: The Azure Private DNS Zone must also be linked to the VNet that has your Azure IaaS DNS Server.
 
 In the scenario, you must link the Azure Private DNS Zone (privatelink.database.windows.net) to the VNet (10.0.0.0/24) that has your Azure IaaS DNS Server.
+
+Here is the how-to for linking a private dns zone to your VNet (Don't need to enable auto-registration)
+
+- https://docs.microsoft.com/en-us/azure/dns/private-dns-getstarted-portal#link-the-virtual-network
 
 #### VNet Peering
 
