@@ -49,7 +49,7 @@ Here are the assumptions;
 
 ### Architecture Diagram
 
-![GitHub Logo](/PrivateLink.jpg)
+![GitHub Logo](/images/PrivateLink.jpg)
 
 Remember, the design objective for Private Link is to access a PaaS service privately using the SAME hostname. 
 
@@ -61,21 +61,21 @@ In order for Private Link to work properly, DNS queries must be answered by the 
 
 #### Corporate DNS Server
 
-The DNS Server(s) in your corporate network must forward queries for the applicable PaaS Service FLZ (e.g. database.windows.net) to your Azure IaaS DNS Server.
+The DNS Server(s) in your corporate network must forward queries for the applicable FLZ (e.g. privatelink.database.windows.net) to your Azure IaaS DNS Server.
 
 There is no other way to achieve the objective other than configuring local host files on your hosts (good for testing, poor for production). 
 
-In the scenario, you must configure your corporate DNS Server(s) to conditionally forward queries destined for database.windows.net (or applicable PaaS FLZ) to the DNS server that is housed in Azure, in this illustration thats 10.0.0.4.
+In the scenario, you must configure your corporate DNS Server(s) to conditionally forward queries destined for privatelink.database.windows.net (or applicable PaaS FLZ) to the DNS server that is housed in Azure, in this illustration thats 10.0.0.4.
 
 #### DNS Server in Azure
 
 Your DNS server in Azure IaaS must forward queries to the Azure DNS Resolver (168.63.129.16). 
 
-You can chose to forward all queries to the Azure DNS Resolver, or conditionally forward queries (e.g. database.windows.net) to the Azure DNS Resolver. It's up to you, both will work. Ask your DNS nerd if you have any standards to adhere to. 
+You can chose to forward all queries to the Azure DNS Resolver, or conditionally forward queries (e.g. privatelink.database.windows.net) to the Azure DNS Resolver. It's up to you, both will work. Ask your DNS nerd if you have any standards to adhere to. 
 
 Important: The Azure DNS Resolver must have a reference to the Azure Private DNS Zone (next section) that will have the privatelink.database.windows.net FLZ mappings. 
 
-In the scenario, you must configure your Azure IaaS DNS Server to conditionally forward (or forward all) queries destined for database.windows.net (or applicable PaaS FLZ) to the Azure DNS Resolver (168.63.129.16).
+In the scenario, you must configure your Azure IaaS DNS Server to conditionally forward (or forward all) queries destined for privatelink.database.windows.net (or applicable PaaS FLZ) to the Azure DNS Resolver (168.63.129.16).
 
 #### Speical note about Active Directory Integrated DNS Scenarios
 
